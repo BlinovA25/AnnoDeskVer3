@@ -1,4 +1,11 @@
+<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+
+
 <p id="notice"><%= notice %></p>
+
+<div>
+  <img style="width: 400px;" src="<%= @announcement.picture %>"/>
+</div>
 
 <p>
   <strong>Text:</strong>
@@ -7,13 +14,14 @@
 
 <p>
   <strong>User:</strong>
-  <%= @announcement.user_id %>
-</p>
-
-<p>
-  <strong>Picture:</strong>
-  <%= @announcement.picture %>
+  <%= @announcement.user.fullname %>
 </p>
 
 <%= link_to 'Edit', edit_announcement_path(@announcement) %> |
 <%= link_to 'Back', announcements_path %>
+
+
+
+
+
+

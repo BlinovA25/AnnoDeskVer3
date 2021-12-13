@@ -5,9 +5,10 @@
 <table>
   <thead>
     <tr>
+      <th>Picture</th>
       <th>Text</th>
       <th>User</th>
-      <th>Picture</th>
+
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,9 +16,12 @@
   <tbody>
     <% @announcements.each do |announcement| %>
       <tr>
+        <td>
+          <img style="width: 150px;" src="<%= announcement.picture %>"/>
+        </td>
         <td><%= announcement.text %></td>
-        <td><%= announcement.user_id %></td>
-        <td><%= announcement.picture %></td>
+        <td><%= announcement.user.fullname %></td>
+
         <td><%= link_to 'Show', announcement %></td>
         <td><%= link_to 'Edit', edit_announcement_path(announcement) %></td>
         <td><%= link_to 'Destroy', announcement, method: :delete, data: { confirm: 'Are you sure?' } %></td>

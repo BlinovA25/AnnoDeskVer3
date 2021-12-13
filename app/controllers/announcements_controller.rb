@@ -1,5 +1,9 @@
 class AnnouncementsController < ApplicationController
-  before_action :set_announcement, only: %i[ show edit update destroy ]
+  # before_action :set_announcement, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
+  load_and_authorize_resource
+
+  # authorize_resource class: false
 
   # GET /announcements or /announcements.json
   def index
@@ -7,21 +11,20 @@ class AnnouncementsController < ApplicationController
   end
 
   # GET /announcements/1 or /announcements/1.json
-  def show
-  end
+  def show; end
 
   # GET /announcements/new
   def new
-    @announcement = Announcement.new
+
   end
 
   # GET /announcements/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /announcements or /announcements.json
   def create
-    @announcement = Announcement.new(announcement_params)
+    # @announcement = Announcement.new(announcement_params)
+    @announcement.user_id = current_user.id
 
     respond_to do |format|
       if @announcement.save
@@ -57,13 +60,15 @@ class AnnouncementsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_announcement
-      @announcement = Announcement.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def announcement_params
-      params.require(:announcement).permit(:text, :user_id, :picture)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  # def set_announcement
+  #   @announcement = Announcement.find(params[:id])
+  # end
+
+  # Only allow a list of trusted parameters through.
+  def announcement_params
+    params.require(:announcement).permit(:text, :user_id, :picture)
+  end
 end
+
