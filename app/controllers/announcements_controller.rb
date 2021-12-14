@@ -11,7 +11,9 @@ class AnnouncementsController < ApplicationController
   end
 
   # GET /announcements/1 or /announcements/1.json
-  def show; end
+  def show
+    @users = User.all
+  end
 
   # GET /announcements/new
   def new

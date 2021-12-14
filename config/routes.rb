@@ -6,10 +6,11 @@ Rails.application.routes.draw do
   scope '/admin' do
     resources :users
   end
+  resources :announcements do
+    resources :comments
+  end
 
   resources :comments
-  resources :announcements
-
   resources :roles
 
   get 'index', to: 'announcements#index'

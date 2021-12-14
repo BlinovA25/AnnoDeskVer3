@@ -4,10 +4,41 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+    return unless user.present?
+    can :update, user
+
     if user.admin?
       can :manage, :all
-    else
-      can :manage, :all
+
+    elsif user.seller?
+      # can with announcements
+      can :read, Announcement
+      can :create, Announcement
+      can :update, Announcement do |announcement|
+        announcement.try(:user) == user
+      end
+      can :destroy, Announcement do |announcement|
+        announcement.try(:user) == user
+      end
+      # can with comments
+      can :read, Comment
+      can :create, Comment
+      can :update, Comment do |comment|
+        comment.try(:user) == user
+      end
+      can :destroy, Comment do |comment|
+        comment.try(:user) == user
+      end
+      # can with users
+      can :read, User
+      can :update, User do |user|
+        user.try(:user) == user
+      end
+
+    elsif user.regular?
+      can :read, Announcement
+      can :read, Comment
+      can :read, User
     end
   end
 

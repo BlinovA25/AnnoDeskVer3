@@ -1,6 +1,5 @@
 <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
 
-
 <p id="notice"><%= notice %></p>
 
 <div>
@@ -17,11 +16,35 @@
   <%= @announcement.user.fullname %>
 </p>
 
-<%= link_to 'Edit', edit_announcement_path(@announcement) %> |
-<%= link_to 'Back', announcements_path %>
+<b>
+  <% if can? :update, @announcement %>
+    You can update this post ->
+    <%= link_to 'Edit', edit_announcement_path(@announcement) %>
+  <% end %>
+</b>
 
+<h2>Comments</h2>
+<div>
+  <% @announcement.comments.each do |comment| %>
+    <div style=" background-color: #BBBBBB">
+      <p style="margin-left: 5px;">
+        <strong>Author:</strong>
+        <% @users.each do |u| %>
+          <% if(u.id == comment.user_id) %>
+            <%= u.fullname %>
+          <% end %>
+        <% end %>
+      </p>
+      <p style="margin-left: 12px;">
+        <%= comment.text %>
 
+        <% if can? :update, comment %>
+          <%= link_to 'Delete', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+      </p> <br>
+    </div>
+  <% end %>
+</div>
 
-
-
-
+<b>Here you can add your comment:</b>
+<%= render 'comments/form' %>

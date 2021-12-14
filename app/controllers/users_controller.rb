@@ -83,13 +83,13 @@ class UsersController < ApplicationController
   # Only allow a list of trusted parameters through.
   # for admin form
   def user_params
-    params.require(:user).permit(:login, :fullname, :email, :password, :password_confirmation)
+    params.require(:user).permit(:login, :fullname, :email, :password, :password_confirmation, :role_id)
     # :address, :city, :state, :country, :zip, :password, :confirm_password, :latitude, :longitude
   end
 end
 
 
-#respond_to do |format|
+# respond_to do |format|
 #       if @user.update(user_params)
 #         format.html { redirect_to @user, notice: "User was successfully updated." }
 #         format.json { render :show, status: :ok, location: @user }

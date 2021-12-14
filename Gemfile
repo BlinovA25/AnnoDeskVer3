@@ -11,7 +11,7 @@ gem 'carrierwave', '~> 2.0'
 gem 'dotenv-rails'
 # авторизация через google
 gem 'omniauth-google-oauth2'
-
+# установка разрешений для пользователей
 gem 'cancancan'
 
 
