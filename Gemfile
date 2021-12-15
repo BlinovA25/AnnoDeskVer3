@@ -13,7 +13,8 @@ gem 'dotenv-rails'
 gem 'omniauth-google-oauth2'
 # установка разрешений для пользователей
 gem 'cancancan'
-
+# чтобы работала гугл авторизация
+gem "omniauth-rails_csrf_protection"
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
