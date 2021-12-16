@@ -15,6 +15,10 @@ gem 'omniauth-google-oauth2'
 gem 'cancancan'
 # чтобы работала гугл авторизация
 gem "omniauth-rails_csrf_protection"
+#
+gem 'pg_search'
+gem 'faker'
+
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'

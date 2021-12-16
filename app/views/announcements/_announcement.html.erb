@@ -1,0 +1,41 @@
+<style>
+  .auth {
+    font-size: 14px;
+  }
+  .anno_text {
+      font-size: 18px;
+  }
+  .pic {
+      width: 220px;
+      height: 135px;
+  }
+  .li_right_margin {
+      margin-right: 40px;
+  }
+</style>
+
+  <li class="li_right_margin">
+    <tr>
+      <td>
+        <img class="pic" src="<%= announcement.picture %>"/>
+      </td>
+      <p class="auth">
+        Author:
+        <%= announcement.user.fullname %>
+      </p>
+      <p class="anno_text">
+        <%= announcement.text %>
+      </p>
+
+      <br>
+      <%= link_to 'Show', announcement %>
+      <% if can? :update, announcement %>
+        <%= link_to 'Edit', edit_announcement_path(announcement) %>
+      <% end %>
+      <% if can? :delete, announcement %>
+        <%= link_to 'Destroy', announcement, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
+    </tr>
+  </li>
+
+

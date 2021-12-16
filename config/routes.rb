@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
-  resources :users
+  resources :users, only: [:index]
 
 
   scope '/admin' do
@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   resources :comments
   resources :roles
+
+  resources :announcements, only: [:index]
 
   get 'index', to: 'announcements#index'
   get 'users_path', to: 'users#index'
