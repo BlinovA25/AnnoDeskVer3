@@ -1,9 +1,11 @@
 <style>
   .auth {
-    font-size: 14px;
+    font-size: 16px;
+      margin-left: 5px;
   }
   .anno_text {
-      font-size: 18px;
+      font-size: 20px;
+      margin-left: 10px;
   }
   .pic {
       width: 220px;
@@ -12,9 +14,19 @@
   .li_right_margin {
       margin-right: 40px;
   }
+  .action {
+      font-size: 16px;
+      margin-left: 5px;
+  }
+  .anno_block {
+      width: 220px;
+      height: 260px;
+      background-color: #CCCCCC;
+  }
 </style>
 
   <li class="li_right_margin">
+    <div class="anno_block">
     <tr>
       <td>
         <img class="pic" src="<%= announcement.picture %>"/>
@@ -27,7 +39,7 @@
         <%= announcement.text %>
       </p>
 
-      <br>
+      <p class="action">
       <%= link_to 'Show', announcement %>
       <% if can? :update, announcement %>
         <%= link_to 'Edit', edit_announcement_path(announcement) %>
@@ -35,7 +47,9 @@
       <% if can? :delete, announcement %>
         <%= link_to 'Destroy', announcement, method: :delete, data: { confirm: 'Are you sure?' } %>
       <% end %>
+      </p>
     </tr>
+    </div>
   </li>
 
 

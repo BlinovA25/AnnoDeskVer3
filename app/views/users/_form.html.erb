@@ -1,3 +1,5 @@
+
+
 <%= form_with(model: user) do |form| %>
   <% if user.errors.any? %>
     <div id="error_explanation">
@@ -36,12 +38,15 @@
     <%= form.text_field :confirm_password %>
   </div>
 
-  <div class="field">
-    <%= form.label :role_id %>
-    <%= collection_select(:user, :role_id, Role.all, :id, :name, { prompt: true }) %>
-  </div>
+  <% if @user.role.name == 'Admin' %>
+    <div class="field">
+      <%= form.label :role_id %>
+      <%= collection_select(:user, :role_id, Role.all, :id, :name, { prompt: true }) %>
+    </div>
+  <% end %>
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+

@@ -16,9 +16,7 @@ class AnnouncementsController < ApplicationController
   end
 
   # GET /announcements/new
-  def new
-
-  end
+  def new; end
 
   # GET /announcements/1/edit
   def edit; end
